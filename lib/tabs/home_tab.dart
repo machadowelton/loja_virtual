@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     Widget _buildBodyBack() => Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -15,6 +17,8 @@ class HomeTab extends StatelessWidget {
         )
       ),
     );
+
+
     return Stack(
       children: <Widget>[
         _buildBodyBack(),
@@ -29,6 +33,27 @@ class HomeTab extends StatelessWidget {
                 title: const Text("Novidades"),
                 centerTitle: true,
               ),             
+            ),
+            FutureBuilder<QuerySnapshot>(
+              future: Firestore.instance.collection("home").orderBy("pos").getDocuments(),              
+              builder: (context, snapshot) {               
+                if(!snapshot.hasData)
+                  return SliverToBoxAdapter(
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                    ),
+                  );
+                else {
+                  print("aaaaaaaaa ${snapshot.data.documents.length}");
+                  return SliverToBoxAdapter(
+                    child: Container(),
+                  );
+                }
+                  
+              },
             )
           ],
         )
