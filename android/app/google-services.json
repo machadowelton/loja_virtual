@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "75025971906",
+    "firebase_url": "https://lojaflutter-68c7a.firebaseio.com",
+    "project_id": "lojaflutter-68c7a",
+    "storage_bucket": "lojaflutter-68c7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75025971906:android:cb1e05ae42a1d1bd23d95b",
+        "android_client_info": {
+          "package_name": "br.com.machadowelton.loja_virtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75025971906-7vn959v21qsltptaeifsligp71vo2l2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJFm9zhGQcg-dILVFnK4XUvENLTaJORYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75025971906-7vn959v21qsltptaeifsligp71vo2l2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
