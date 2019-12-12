@@ -6,7 +6,7 @@ class ProductData {
     id = snapshot.documentID;
     title = snapshot.data["title"];
     description = snapshot.data["description"];
-    price = snapshot.data["price"];
+    price = double.parse(snapshot.data["price"]);
     images = snapshot.data["images"];
     sizes =  snapshot.data["sizes"];
   }
