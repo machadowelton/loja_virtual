@@ -15,10 +15,10 @@ class _ProductScreenState extends State<ProductScreen> {
   final ProductData product;
 
   _ProductScreenState(this.product);
+  String size = "";
 
   @override
   Widget build(BuildContext context) {
-    String size;
     final Color primarycolor = Theme.of(context).primaryColor;
     return Scaffold(
       appBar: AppBar(
@@ -67,13 +67,12 @@ class _ProductScreenState extends State<ProductScreen> {
                 SizedBox(
                   height: 34.0,
                   child: GridView(
-                    padding: EdgeInsets.symmetric(vertical: 4.0),
                     scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.symmetric(vertical: 4.0),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 8.0,
-                      childAspectRatio: 0.5,
-                    ),
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 8.0,
+                        childAspectRatio: 0.5),
                     children: product.sizes.map((s) {
                       return GestureDetector(
                         onTap: () {
@@ -83,11 +82,11 @@ class _ProductScreenState extends State<ProductScreen> {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(4.0)),
+                            borderRadius: BorderRadius.all(Radius.circular(4.0)),
                             border: Border.all(
-                                color: s == size ? primarycolor : Colors.grey,
-                                width: 3.0),
+                              color: s == size ? primarycolor : Colors.grey[500],
+                              width: 3.0
+                            )
                           ),
                           width: 50.0,
                           alignment: Alignment.center,
@@ -96,7 +95,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       );
                     }).toList(),
                   ),
-                ),
+                )
               ],
             ),
           )
