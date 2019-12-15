@@ -9,14 +9,14 @@ class UserModel extends Model {
   FirebaseUser firebaseUser;
   Map<String, dynamic> userData = Map();
 
-  bool isLoadging = false;
+  bool isLoading = false;
 
   void signUp(
       {@required Map<String, dynamic> userData,
       @required String pass,
       @required VoidCallback onSuccess,
       @required VoidCallback onFailure}) {
-    isLoadging = true;
+    isLoading = true;
     notifyListeners();
     _auth
         .createUserWithEmailAndPassword(
@@ -25,26 +25,34 @@ class UserModel extends Model {
       firebaseUser = user;
       await _saveUserData(userData);
       onSuccess();
-      isLoadging = false;
+      isLoading = false;
       notifyListeners();
     }).catchError((e) {
       onFailure();
-      isLoadging = false;
+      isLoading = false;
       notifyListeners();
     });
   }
 
   void signIn() async {
-    isLoadging = true;
+    isLoading = true;
     notifyListeners();
     await Future.delayed(Duration(seconds: 3));
-    isLoadging = false;
+    isLoading = false;
     notifyListeners();
+  }
+
+  void signOut() async {
+    await _auth.signOut();
+    userData = Map();
+    firebaseUser = null;
   }
 
   void recoverPass() {}
 
-  bool isLogged() {}
+  bool isLoggedIn() {
+    return firebaseUser != null;
+  }
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;

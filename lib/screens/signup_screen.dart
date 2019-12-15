@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/models/user_model.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'dart:async';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -14,16 +15,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final __addressController = TextEditingController();
 
   final _formkey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           title: Text("Criar conta"),
           centerTitle: true,
         ),
         body: ScopedModelDescendant<UserModel>(
           builder: (context, child, model) {
-            if (model.isLoadging)
+            if (model.isLoading)
               return Center(
                 child: CircularProgressIndicator(),
               );
@@ -109,7 +112,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onSuccess() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text("Usuario criado com suceso!"),
+      backgroundColor: Theme.of(context).primaryColor,
+      duration: Duration(seconds: 2),
+    ));
+    Future.delayed(Duration(seconds: 2)).then((_) {
+      Navigator.of(context).pop();
+    });
   }
+
   void _onFailure() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text("Erro ao criar o usuario"),
+      backgroundColor: Colors.redAccent,
+      duration: Duration(seconds: 2),
+    ));
   }
 }
