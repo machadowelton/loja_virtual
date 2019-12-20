@@ -3,6 +3,8 @@ import 'package:loja_virtual/datas/product_data.dart';
 
 class CartProduct {
 
+  CartProduct();
+
   CartProduct.fromDocument(DocumentSnapshot documentSnapshot) {
     id = documentSnapshot.documentID;
     catetory = documentSnapshot.data["category"];
@@ -17,7 +19,7 @@ class CartProduct {
       "product_id": product_id,
       "quantity": quantity,
       "size": size,
-      "procuct": productData.toResumeMap()
+      //"procuct": productData.toResumeMap()
     };
   }
 
@@ -31,5 +33,8 @@ class CartProduct {
 
   ProductData productData;
 
-
+  @override
+  String toString() {    
+    return "Cart Product[id: $id, category: $catetory, product_id: $product_id, quantity: $quantity, size: $size, product data: $productData]";
+  }
 }

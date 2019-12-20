@@ -31,4 +31,9 @@ class ProductData {
   List images;
   List sizes;
 
+  @override
+  String toString() {    
+    return "Product Data[id: $id, category: $category, title: $title, description: $description, price: $price]";
+  }
+
 }
